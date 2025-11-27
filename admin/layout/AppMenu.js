@@ -102,11 +102,11 @@ const AppMenu = () => {
         //   icon: "pi pi-fw pi-globe",
         //   to: "/landing",
         // },
-        {
-          label: "Account",
-          icon: "pi pi-fw pi-user-edit",
-          to: "/account",
-        },
+        // {
+        //   label: "Account",
+        //   icon: "pi pi-fw pi-user-edit",
+        //   to: "/account",
+        // },
         {
           label: "Staff",
           icon: "pi pi-fw pi-user-plus",
@@ -207,26 +207,6 @@ const AppMenu = () => {
               to: "/auth/access",
             },
           ],
-        },
-        {
-          label: "Crud",
-          icon: "pi pi-fw pi-pencil",
-          to: "/pages/crud",
-        },
-        {
-          label: "Timeline",
-          icon: "pi pi-fw pi-calendar",
-          to: "/pages/timeline",
-        },
-        {
-          label: "Not Found",
-          icon: "pi pi-fw pi-exclamation-circle",
-          to: "/pages/notfound",
-        },
-        {
-          label: "Empty",
-          icon: "pi pi-fw pi-circle-off",
-          to: "/pages/empty",
         },
       ],
     },

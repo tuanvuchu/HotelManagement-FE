@@ -15,6 +15,7 @@ import {
   faInstagram,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import axios from "axios";
 
 import bootstrapStyles from "../../assets/css/bootstrap.module.css";
 import styles from "../../assets/css/style.module.css";
@@ -24,24 +25,27 @@ const mergedStyles = { ...bootstrapStyles, ...styles, ...headerStyles };
 const cx = classNames.bind(mergedStyles);
 
 export default function Header() {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
+  const [userInformation, setUserInformation] = useState(null);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const fetchUserData = async () => {
+    try {
+      if (user && user.account && user.account.AccountId) {
+        const accountId = user.account.AccountId;
 
+        const response = await axios.get(
+          `http://localhost:3000/api/user/get-data-by-id/${accountId}`
+        );
+        setUserInformation(response.data[0]);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
   useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 992);
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    fetchUserData();
   }, []);
 
-  const handleMouseEnter = () => {
-    if (isDesktop) setIsHovered(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (isDesktop) setIsHovered(false);
-  };
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleClick = () => {
     setIsHovered((prev) => !prev);
@@ -63,11 +67,11 @@ export default function Header() {
                 "p-0",
                 "d-flex",
                 "align-items-center",
-                "justify-content-center",
+                "justify-content-center"
               )}
             >
               <h1 className={cx("m-0", "text-primary", "text-uppercase")}>
-                Hang&apos;s Hotel
+                H Anh Hotel
               </h1>
             </Link>
           </div>
@@ -82,7 +86,7 @@ export default function Header() {
                     "d-inline-flex",
                     "align-items-center",
                     "py-2",
-                    "me-4",
+                    "me-4"
                   )}
                 >
                   <FontAwesomeIcon
@@ -96,7 +100,7 @@ export default function Header() {
                     "h-100",
                     "d-inline-flex",
                     "align-items-center",
-                    "py-2",
+                    "py-2"
                   )}
                 >
                   <FontAwesomeIcon
@@ -112,7 +116,7 @@ export default function Header() {
                     "d-inline-flex",
                     "align-items-center",
                     "py-2",
-                    "socialLinks",
+                    "socialLinks"
                   )}
                 >
                   <a href="" className={cx("me-3")}>
@@ -140,7 +144,7 @@ export default function Header() {
                 "bg-dark",
                 "navbar-dark",
                 "p-3",
-                "p-lg-0",
+                "p-lg-0"
               )}
             >
               <Link
@@ -148,7 +152,7 @@ export default function Header() {
                 className={cx("navbar-brand", "d-block", "d-lg-none")}
               >
                 <h1 className={cx("m-0", "text-primary", "text-uppercase")}>
-                  Hang&apos;s Hotel
+                  H Anh Hotel
                 </h1>
               </Link>
               <button
@@ -163,7 +167,7 @@ export default function Header() {
                 className={cx(
                   "collapse",
                   "navbar-collapse",
-                  "justify-content-between",
+                  "justify-content-between"
                 )}
                 id="navbarCollapse"
               >
@@ -172,7 +176,7 @@ export default function Header() {
                     "navbar-nav",
                     "mr-auto",
                     "py-0",
-                    "navbarNavFlex",
+                    "navbarNavFlex"
                   )}
                 >
                   <NavLink
@@ -237,10 +241,8 @@ export default function Header() {
                       "nav-item",
                       "dropdown",
                       { show: isHovered },
-                      "dropdownContainer",
+                      "dropdownContainer"
                     )}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
                   >
                     <a
                       href="#"
@@ -258,7 +260,7 @@ export default function Header() {
                         "rounded-0",
                         "m-0",
                         { show: isHovered },
-                        "dropdownMenuCustom",
+                        "dropdownMenuCustom"
                       )}
                     >
                       <Link
@@ -294,7 +296,21 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
-
+                {userInformation} && (
+                <div>
+                  <div className={cx("m-b-25")}>
+                    <img
+                      src={userInformation.UserImage}
+                      width={100}
+                      height={100}
+                      className={cx("img-radius")}
+                      alt="User-Profile-Image"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+                  <h6 className={cx("f-w-600")}>{userInformation.UserName}</h6>
+                </div>
+                ) : (
                 <Link
                   to="/login"
                   className={cx(
@@ -304,12 +320,13 @@ export default function Header() {
                     "py-4",
                     "px-md-5",
                     "d-none",
-                    "d-lg-block",
+                    "d-lg-block"
                   )}
                 >
                   Login Now
                   <FontAwesomeIcon icon={faArrowRight} className={cx("ms-3")} />
                 </Link>
+                )
               </div>
             </nav>
           </div>

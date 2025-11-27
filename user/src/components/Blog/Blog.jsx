@@ -24,7 +24,7 @@ export default function Blog() {
             "d-flex",
             "flex-wrap",
             "align-items-center",
-            "justify-content-between",
+            "justify-content-between"
           )}
         >
           <div>
@@ -38,7 +38,7 @@ export default function Blog() {
               "btn-arrow",
               "btn-primary",
               "mt-3",
-              "text-white",
+              "text-white"
             )}
           >
             <span>
@@ -56,7 +56,7 @@ export default function Blog() {
                 "blog-post",
                 "position-relative",
                 "overflow-hidden",
-                "rounded-4",
+                "rounded-4"
               )}
             >
               <img
@@ -74,14 +74,14 @@ export default function Blog() {
                       "px-2",
                       "py-1",
                       "rounded-2",
-                      "fs-6",
+                      "fs-6"
                     )}
                   >
                     Hotels
                   </span>
                 </a>
                 <h4 className={cx("display-6", "fw-normal", "mt-2")}>
-                  <a>A Day in the Life of a Hang&apos;s Hotel Guest</a>
+                  <a>A Day in the Life of a H Anh Hotel Guest</a>
                 </h4>
                 <p className={cx("m-0", "align-items-center")}>
                   <svg width="19" height="19">
@@ -98,7 +98,7 @@ export default function Blog() {
                 "blog-post",
                 "position-relative",
                 "overflow-hidden",
-                "rounded-4",
+                "rounded-4"
               )}
             >
               <img
@@ -116,7 +116,7 @@ export default function Blog() {
                       "px-2",
                       "py-1",
                       "rounded-2",
-                      "fs-6",
+                      "fs-6"
                     )}
                   >
                     Activites
@@ -140,7 +140,7 @@ export default function Blog() {
                 "blog-post",
                 "position-relative",
                 "overflow-hidden",
-                "rounded-4",
+                "rounded-4"
               )}
             >
               <img
@@ -158,14 +158,14 @@ export default function Blog() {
                       "px-2",
                       "py-1",
                       "rounded-2",
-                      "fs-6",
+                      "fs-6"
                     )}
                   >
                     Rooms
                   </span>
                 </a>
                 <h4 className={cx("display-6", "fw-normal", "mt-2")}>
-                  <a>A Look Inside Hang&apos;s Hotel Suites</a>
+                  <a>A Look Inside H Anh Hotel Suites</a>
                 </h4>
                 <p className={cx("m-0", "align-items-center")}>
                   <svg width="19" height="19">
@@ -182,7 +182,7 @@ export default function Blog() {
                 "blog-post",
                 "position-relative",
                 "overflow-hidden",
-                "rounded-4",
+                "rounded-4"
               )}
             >
               <img
@@ -200,16 +200,14 @@ export default function Blog() {
                       "px-2",
                       "py-1",
                       "rounded-2",
-                      "fs-6",
+                      "fs-6"
                     )}
                   >
                     Activites
                   </span>
                 </a>
                 <h4 className={cx("display-6", "fw-normal", "mt-2")}>
-                  <a>
-                    Why Hang&apos;s Hotel Is the Perfect Staycation Destination
-                  </a>
+                  <a>Why H Anh Hotel Is the Perfect Staycation Destination</a>
                 </h4>
                 <p className={cx("m-0", "align-items-center")}>
                   <svg width="19" height="19">
@@ -226,7 +224,7 @@ export default function Blog() {
                 "blog-post",
                 "position-relative",
                 "overflow-hidden",
-                "rounded-4",
+                "rounded-4"
               )}
             >
               <img
@@ -244,14 +242,14 @@ export default function Blog() {
                       "px-2",
                       "py-1",
                       "rounded-2",
-                      "fs-6",
+                      "fs-6"
                     )}
                   >
                     Rooms
                   </span>
                 </a>
                 <h4 className={cx("display-6", "fw-normal", "mt-2")}>
-                  <a>The Benefits of Booking Directly with Hang&apos;s Hotel</a>
+                  <a>The Benefits of Booking Directly with H Anh Hotel</a>
                 </h4>
                 <p className={cx("m-0", "align-items-center")}>
                   <svg width="19" height="19">

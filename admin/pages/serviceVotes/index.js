@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "primereact/button";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
-import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
 import { Toolbar } from "primereact/toolbar";
 import { Toast } from "primereact/toast";
@@ -22,7 +21,8 @@ export default function ServiceVotes() {
     Deleted: false,
   };
 
-  const token = "YOUR_API_TOKEN_HERE";
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTc2NDI0ODkxMSwiZXhwIjoxNzY0ODUzNzExfQ.KFagZtbBZOWLC8jUEbm5T-mBVNoJqhPsRBS494PxZZU";
   const [serviceVotess, setServiceVotess] = useState([]);
   const [serviceVotes, setServiceVotes] = useState(emptyServiceVotes);
   const [selectedServiceVotess, setSelectedServiceVotess] = useState(null);
@@ -98,8 +98,6 @@ export default function ServiceVotes() {
 
   const saveServiceVotes = () => {
     setSubmitted(true);
-    let _serviceVotess = [...serviceVotess];
-    let _serviceVotes = { ...serviceVotes };
 
     if (validateServiceVotes()) {
       if (serviceVotes.ServiceVotesId !== 0) {
@@ -116,7 +114,7 @@ export default function ServiceVotes() {
             copyServiceVotes,
             {
               headers: { Authorization: `Bearer ${token}` },
-            },
+            }
           )
           .then((response) => {
             fetchServiceVotess();
@@ -130,11 +128,10 @@ export default function ServiceVotes() {
             setServiceVotes(emptyServiceVotes);
           })
           .catch((error) =>
-            console.error("Error updating serviceVotes:", error),
+            console.error("Error updating serviceVotes:", error)
           );
       } else {
         // Add new serviceVotes (POST request)
-        console.log("Creating serviceVotes:", serviceVotes);
         serviceVotes.Deleted = false;
         axios
           .post("http://localhost:3000/api/serviceVotes", serviceVotes, {
@@ -152,7 +149,7 @@ export default function ServiceVotes() {
             setServiceVotes(emptyServiceVotes);
           })
           .catch((error) =>
-            console.error("Error creating serviceVotes:", error),
+            console.error("Error creating serviceVotes:", error)
           );
       }
     } else {
@@ -183,7 +180,7 @@ export default function ServiceVotes() {
         `http://localhost:3000/api/serviceVotes/${serviceVotes.ServiceVotesId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
-        },
+        }
       )
       .then((response) => {
         fetchServiceVotess();
@@ -203,7 +200,7 @@ export default function ServiceVotes() {
 
   const deleteSelectedServiceVotess = () => {
     let _serviceVotess = serviceVotess.filter(
-      (val) => !selectedServiceVotess.includes(val),
+      (val) => !selectedServiceVotess.includes(val)
     );
     setServiceVotess(_serviceVotess);
     setDeleteServiceVotessDialog(false);
@@ -216,19 +213,11 @@ export default function ServiceVotes() {
     });
   };
 
-  const findIndexById = (id) =>
-    serviceVotess.findIndex((r) => r.ServiceVotesId === id);
-  const createId = () => Math.floor(Math.random() * 100000);
-
   const onInputChange = (e, name) => {
     let val = e.target ? e.target.value : e.value;
     let _serviceVotes = { ...serviceVotes };
     _serviceVotes[name] = val;
     setServiceVotes(_serviceVotes);
-  };
-
-  const onServiceVotesTypeChange = (e) => {
-    onInputChange({ value: e.value }, "ServiceVotesTypeId");
   };
 
   const onUserChange = (e) => {
@@ -259,13 +248,6 @@ export default function ServiceVotes() {
   );
 
   const rightToolbarTemplate = () => <></>;
-
-  const statusBodyTemplate = (rowData) => (
-    <>
-      <span className="p-column-title">Status</span>
-      {rowData.Status}
-    </>
-  );
 
   const actionBodyTemplate = (rowData) => (
     <>

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useRef } from "react";
 import AppConfig from "../../../layout/AppConfig";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
@@ -21,7 +21,7 @@ const LoginPage = () => {
   const router = useRouter();
   const containerClassName = classNames(
     "surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden",
-    { "p-input-filled": layoutConfig.inputStyle === "filled" },
+    { "p-input-filled": layoutConfig.inputStyle === "filled" }
   );
 
   const handleLogin = async () => {
@@ -31,7 +31,7 @@ const LoginPage = () => {
         {
           email,
           password,
-        },
+        }
       );
       if (response.status === 200) {
         console.log("Login successful", response.data);

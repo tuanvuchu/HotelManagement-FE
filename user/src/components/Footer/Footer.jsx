@@ -35,7 +35,7 @@ export default function Footer() {
           "text-light",
           "footer",
           "wow",
-          "fadeIn",
+          "fadeIn"
         )}
         data-wow-delay="0.1s"
       >
@@ -45,7 +45,7 @@ export default function Footer() {
               <div className={cx("bg-primary", "rounded", "p-4")}>
                 <a href="index.html">
                   <h1 className={cx("text-white", "text-uppercase", "mb-3")}>
-                    Hang&apos;s Hotel
+                    H Anh Hotel
                   </h1>
                 </a>
                 <p className={cx("text-white", "mb-0")}>
@@ -64,7 +64,7 @@ export default function Footer() {
                   "text-start",
                   "text-primary",
                   "text-uppercase",
-                  "mb-4",
+                  "mb-4"
                 )}
               >
                 Contact
@@ -117,7 +117,7 @@ export default function Footer() {
                       "text-start",
                       "text-primary",
                       "text-uppercase",
-                      "mb-4",
+                      "mb-4"
                     )}
                   >
                     Company
@@ -145,7 +145,7 @@ export default function Footer() {
                       "text-start",
                       "text-primary",
                       "text-uppercase",
-                      "mb-4",
+                      "mb-4"
                     )}
                   >
                     Services
