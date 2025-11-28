@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink, Link } from "react-router-dom";
@@ -15,7 +15,6 @@ import {
   faInstagram,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import axios from "axios";
 
 import bootstrapStyles from "../../assets/css/bootstrap.module.css";
 import styles from "../../assets/css/style.module.css";
@@ -25,25 +24,13 @@ const mergedStyles = { ...bootstrapStyles, ...styles, ...headerStyles };
 const cx = classNames.bind(mergedStyles);
 
 export default function Header() {
-  const [userInformation, setUserInformation] = useState(null);
-  const user = JSON.parse(localStorage.getItem("user"));
-  const fetchUserData = async () => {
-    try {
-      if (user && user.account && user.account.AccountId) {
-        const accountId = user.account.AccountId;
-
-        const response = await axios.get(
-          `http://localhost:3000/api/user/get-data-by-id/${accountId}`
-        );
-        setUserInformation(response.data[0]);
-      }
-    } catch (err) {
-      console.error(err);
+  const [userInformation] = useState(() => {
+    const a = JSON.parse(localStorage.getItem("user"));
+    if (a) {
+      return a.account;
     }
-  };
-  useEffect(() => {
-    fetchUserData();
-  }, []);
+    return null;
+  });
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -296,37 +283,42 @@ export default function Header() {
                     </div>
                   </div>
                 </div>
-                {userInformation} && (
-                <div>
-                  <div className={cx("m-b-25")}>
-                    <img
-                      src={userInformation.UserImage}
-                      width={100}
-                      height={100}
-                      className={cx("img-radius")}
-                      alt="User-Profile-Image"
-                      referrerPolicy="no-referrer"
-                    />
+                {userInformation ? (
+                  <div>
+                    <div className={cx("m-b-25")}>
+                      <img
+                        src={userInformation.UserImage}
+                        width={100}
+                        height={100}
+                        className={cx("img-radius")}
+                        alt="User-Profile-Image"
+                        referrerPolicy="no-referrer"
+                      />
+                    </div>
+                    <h6 className={cx("f-w-600")}>
+                      {userInformation.UserName}
+                    </h6>
                   </div>
-                  <h6 className={cx("f-w-600")}>{userInformation.UserName}</h6>
-                </div>
                 ) : (
-                <Link
-                  to="/login"
-                  className={cx(
-                    "btn",
-                    "btn-primary",
-                    "rounded-0",
-                    "py-4",
-                    "px-md-5",
-                    "d-none",
-                    "d-lg-block"
-                  )}
-                >
-                  Login Now
-                  <FontAwesomeIcon icon={faArrowRight} className={cx("ms-3")} />
-                </Link>
-                )
+                  <Link
+                    to="/login"
+                    className={cx(
+                      "btn",
+                      "btn-primary",
+                      "rounded-0",
+                      "py-4",
+                      "px-md-5",
+                      "d-none",
+                      "d-lg-block"
+                    )}
+                  >
+                    Login Now
+                    <FontAwesomeIcon
+                      icon={faArrowRight}
+                      className={cx("ms-3")}
+                    />
+                  </Link>
+                )}
               </div>
             </nav>
           </div>
